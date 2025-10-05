@@ -1,15 +1,5 @@
 import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardHeader,
-  CardTitle,
-} from "@/components/ui/card";
-import { Button } from "@/components/ui/button";
-import { Badge } from "@/components/ui/badge";
-import {
   Search,
-  Filter,
   Plus,
   Edit,
   Trash2,
@@ -18,6 +8,16 @@ import {
   TrendingUp,
   AlertCircle,
 } from "lucide-react";
+
+import { Badge } from "@/components/ui/badge";
+import { Button } from "@/components/ui/button";
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
 
 const ModuleProducts = () => {
   const products = [
@@ -169,8 +169,8 @@ const ModuleProducts = () => {
                       product.stock === 0
                         ? "text-red-600"
                         : product.stock < 10
-                        ? "text-yellow-600"
-                        : "text-green-600"
+                          ? "text-yellow-600"
+                          : "text-green-600"
                     }`}
                   >
                     {product.stock} pcs

@@ -1,9 +1,10 @@
 "use client";
 
 import { useState } from "react";
+
+import { ArrowLeft, Smartphone, Shield } from "lucide-react";
+
 import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
-import { Label } from "@/components/ui/label";
 import {
   Card,
   CardContent,
@@ -11,8 +12,9 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
 import { Separator } from "@/components/ui/separator";
-import { ArrowLeft, Smartphone, Shield } from "lucide-react";
 
 const ModuleLogin = () => {
   const [step, setStep] = useState<"phone" | "otp">("phone");

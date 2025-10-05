@@ -1,6 +1,8 @@
-import ModuleSettings from "@/modules/dashboard/settings";
-import { Metadata } from "next";
 import React from "react";
+
+import { Metadata } from "next";
+
+import ModuleSettings from "@/modules/dashboard/settings";
 
 export const metadata: Metadata = {
   title: "Pengaturan",

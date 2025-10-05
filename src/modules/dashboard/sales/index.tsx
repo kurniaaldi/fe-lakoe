@@ -1,20 +1,20 @@
 import {
+  TrendingUp,
+  TrendingDown,
+  DollarSign,
+  ShoppingCart,
+  Download,
+  Filter,
+} from "lucide-react";
+
+import { Button } from "@/components/ui/button";
+import {
   Card,
   CardContent,
   CardDescription,
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
-import { Button } from "@/components/ui/button";
-import {
-  TrendingUp,
-  TrendingDown,
-  DollarSign,
-  ShoppingCart,
-  Calendar,
-  Download,
-  Filter,
-} from "lucide-react";
 
 const ModuleSales = () => {
   const salesData = [

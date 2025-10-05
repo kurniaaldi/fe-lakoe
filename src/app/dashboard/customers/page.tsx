@@ -1,6 +1,8 @@
-import ModuleCustomers from "@/modules/dashboard/customers";
-import { Metadata } from "next";
 import React from "react";
+
+import { Metadata } from "next";
+
+import ModuleCustomers from "@/modules/dashboard/customers";
 
 export const metadata: Metadata = {
   title: "Pelanggan",

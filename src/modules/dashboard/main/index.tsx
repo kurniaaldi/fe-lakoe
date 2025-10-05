@@ -1,3 +1,5 @@
+import { TrendingUp, Users, ShoppingCart, DollarSign } from "lucide-react";
+
 import {
   Card,
   CardContent,
@@ -5,7 +7,6 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
-import { TrendingUp, Users, ShoppingCart, DollarSign } from "lucide-react";
 
 const ModuleDashboard = () => {
   const stats = [

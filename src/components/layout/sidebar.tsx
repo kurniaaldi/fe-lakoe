@@ -1,11 +1,5 @@
 "use client";
 
-import { useState } from "react";
-import Link from "next/link";
-import { usePathname } from "next/navigation";
-import { cn } from "@/lib/utils";
-import { Button } from "@/components/ui/button";
-import { Separator } from "@/components/ui/separator";
 import {
   LayoutDashboard,
   BarChart3,
@@ -20,6 +14,13 @@ import {
   FileText,
   CreditCard,
 } from "lucide-react";
+
+import Link from "next/link";
+import { usePathname } from "next/navigation";
+
+import { Button } from "@/components/ui/button";
+import { Separator } from "@/components/ui/separator";
+import { cn } from "@/lib/utils";
 
 interface SidebarProps {
   isOpen: boolean;

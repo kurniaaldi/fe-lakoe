@@ -1,6 +1,8 @@
-import ModulePayments from "@/modules/dashboard/payments";
-import { Metadata } from "next";
 import React from "react";
+
+import { Metadata } from "next";
+
+import ModulePayments from "@/modules/dashboard/payments";
 
 export const metadata: Metadata = {
   title: "Pembayaran",

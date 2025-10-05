@@ -1,6 +1,8 @@
-import ModuleReports from "@/modules/dashboard/reports";
-import { Metadata } from "next";
 import React from "react";
+
+import { Metadata } from "next";
+
+import ModuleReports from "@/modules/dashboard/reports";
 
 export const metadata: Metadata = {
   title: "Laporan",

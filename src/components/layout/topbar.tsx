@@ -3,23 +3,25 @@
 import { useState } from "react";
 
 import {
-  Menu,
   Bell,
-  Search,
-  User,
-  LogOut,
-  Settings,
   HelpCircle,
+  LogOut,
+  Menu,
+  Search,
+  Settings,
+  User,
 } from "lucide-react";
 
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Button } from "@/components/ui/button";
+import { LanguageSwitcher } from "@/components/ui/language-switcher";
 import {
   Popover,
   PopoverContent,
   PopoverTrigger,
 } from "@/components/ui/popover";
 import { Separator } from "@/components/ui/separator";
+import { useI18n } from "@/hooks/useI18n";
 
 interface TopBarProps {
   onMenuClick: () => void;
@@ -27,6 +29,7 @@ interface TopBarProps {
 
 export function TopBar({ onMenuClick }: TopBarProps) {
   const [isProfileOpen, setIsProfileOpen] = useState(false);
+  const { t } = useI18n();
 
   const handleLogout = () => {
     // Implementasi logout
@@ -52,7 +55,7 @@ export function TopBar({ onMenuClick }: TopBarProps) {
               <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 w-4 h-4" />
               <input
                 type="text"
-                placeholder="Cari transaksi, produk, atau pelanggan..."
+                placeholder={t("common.search")}
                 className="pl-10 pr-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent w-80"
               />
             </div>
@@ -61,6 +64,9 @@ export function TopBar({ onMenuClick }: TopBarProps) {
 
         {/* Right side */}
         <div className="flex items-center space-x-4">
+          {/* Language Switcher */}
+          <LanguageSwitcher />
+
           {/* Notifications */}
           <Button variant="ghost" size="sm" className="relative p-2">
             <Bell className="w-5 h-5" />
@@ -117,7 +123,7 @@ export function TopBar({ onMenuClick }: TopBarProps) {
                   onClick={() => setIsProfileOpen(false)}
                 >
                   <User className="w-4 h-4 mr-3" />
-                  Profil Saya
+                  {t("auth.profile")}
                 </Button>
 
                 <Button
@@ -126,7 +132,7 @@ export function TopBar({ onMenuClick }: TopBarProps) {
                   onClick={() => setIsProfileOpen(false)}
                 >
                   <Settings className="w-4 h-4 mr-3" />
-                  Pengaturan
+                  {t("navigation.settings")}
                 </Button>
 
                 <Button
@@ -135,7 +141,7 @@ export function TopBar({ onMenuClick }: TopBarProps) {
                   onClick={() => setIsProfileOpen(false)}
                 >
                   <HelpCircle className="w-4 h-4 mr-3" />
-                  Bantuan
+                  {t("common.help")}
                 </Button>
               </div>
 
@@ -148,7 +154,7 @@ export function TopBar({ onMenuClick }: TopBarProps) {
                   onClick={handleLogout}
                 >
                   <LogOut className="w-4 h-4 mr-3" />
-                  Keluar
+                  {t("auth.logout")}
                 </Button>
               </div>
             </PopoverContent>

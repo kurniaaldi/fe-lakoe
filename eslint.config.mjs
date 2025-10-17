@@ -80,6 +80,14 @@ const eslintConfig = [
       "no-console": ["warn", { allow: ["warn", "error"] }],
       // Prefer const where possible
       "prefer-const": "warn",
+
+      // Disable prettier line ending rules
+      "prettier/prettier": [
+        "error",
+        {
+          endOfLine: "auto",
+        },
+      ],
     },
     settings: {
       // Resolve TS path aliases like @/

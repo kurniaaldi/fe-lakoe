@@ -1,4 +1,7 @@
-import { TrendingUp, Users, ShoppingCart, DollarSign } from "lucide-react";
+"use client";
+
+import { DollarSign, ShoppingCart, TrendingUp, Users } from "lucide-react";
+import { useTranslation } from "react-i18next";
 
 import {
   Card,
@@ -9,30 +12,32 @@ import {
 } from "@/components/ui/card";
 
 const ModuleDashboard = () => {
+  const { t } = useTranslation("dashboard");
+
   const stats = [
     {
-      title: "Total Penjualan",
+      title: t("totalSales"),
       value: "Rp 12.450.000",
       change: "+12.5%",
       icon: DollarSign,
       color: "text-green-600",
     },
     {
-      title: "Total Transaksi",
+      title: t("totalTransactions"),
       value: "1,234",
       change: "+8.2%",
       icon: ShoppingCart,
       color: "text-blue-600",
     },
     {
-      title: "Pelanggan Aktif",
+      title: t("activeCustomers"),
       value: "456",
       change: "+15.3%",
       icon: Users,
       color: "text-purple-600",
     },
     {
-      title: "Pertumbuhan",
+      title: t("growth"),
       value: "23.1%",
       change: "+5.7%",
       icon: TrendingUp,
@@ -43,8 +48,8 @@ const ModuleDashboard = () => {
   return (
     <div className="space-y-6">
       <div>
-        <h1 className="text-3xl font-bold text-gray-900">Dashboard</h1>
-        <p className="text-gray-600">Selamat datang di Lakoe Backoffice</p>
+        <h1 className="text-3xl font-bold text-gray-900">{t("title")}</h1>
+        <p className="text-gray-600">{t("welcome")}</p>
       </div>
 
       {/* Stats Grid */}
@@ -61,7 +66,7 @@ const ModuleDashboard = () => {
               <div className="text-2xl font-bold">{stat.value}</div>
               <p className={`text-xs ${stat.color} flex items-center`}>
                 <TrendingUp className="h-3 w-3 mr-1" />
-                {stat.change} dari bulan lalu
+                {stat.change} {t("fromLastMonth")}
               </p>
             </CardContent>
           </Card>
@@ -72,24 +77,20 @@ const ModuleDashboard = () => {
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
         <Card>
           <CardHeader>
-            <CardTitle>Grafik Penjualan</CardTitle>
-            <CardDescription>
-              Performa penjualan 7 hari terakhir
-            </CardDescription>
+            <CardTitle>{t("salesChart")}</CardTitle>
+            <CardDescription>{t("salesPerformance")}</CardDescription>
           </CardHeader>
           <CardContent>
             <div className="h-64 flex items-center justify-center text-gray-500">
-              Chart akan ditampilkan di sini
+              {t("chartPlaceholder")}
             </div>
           </CardContent>
         </Card>
 
         <Card>
           <CardHeader>
-            <CardTitle>Produk Terlaris</CardTitle>
-            <CardDescription>
-              Top 5 produk dengan penjualan tertinggi
-            </CardDescription>
+            <CardTitle>{t("topSellingProducts")}</CardTitle>
+            <CardDescription>{t("topProductsDescription")}</CardDescription>
           </CardHeader>
           <CardContent>
             <div className="space-y-4">
@@ -112,7 +113,7 @@ const ModuleDashboard = () => {
                   <div>
                     <p className="font-medium">{product.name}</p>
                     <p className="text-sm text-gray-500">
-                      {product.sales} terjual
+                      {product.sales} {t("sold")}
                     </p>
                   </div>
                   <p className="font-semibold text-green-600">

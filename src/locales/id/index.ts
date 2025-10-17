@@ -1,0 +1,10 @@
+export { default as BahasaAuth } from "./auth.json";
+export { default as BahasaCommon } from "./common.json";
+export { default as BahasaCustomers } from "./customers.json";
+export { default as BahasaDashboard } from "./dashboard.json";
+export { default as BahasaPayments } from "./payments.json";
+export { default as BahasaProducts } from "./products.json";
+export { default as BahasaReports } from "./reports.json";
+export { default as BahasaSales } from "./sales.json";
+export { default as BahasaSettings } from "./settings.json";
+export { default as BahasaTransactions } from "./transactions.json";

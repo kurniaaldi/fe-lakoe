@@ -1,14 +1,17 @@
+"use client";
+
 import {
-  Search,
+  Calendar,
+  Edit,
+  Eye,
   Filter,
   Plus,
-  Edit,
-  Trash2,
-  Eye,
-  Star,
+  Search,
   ShoppingCart,
-  Calendar,
+  Star,
+  Trash2,
 } from "lucide-react";
+import { useTranslation } from "react-i18next";
 
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Badge } from "@/components/ui/badge";
@@ -22,6 +25,8 @@ import {
 } from "@/components/ui/card";
 
 const ModuleCustomers = () => {
+  const { t } = useTranslation("customers");
+
   const customers = [
     {
       id: 1,
@@ -90,11 +95,21 @@ const ModuleCustomers = () => {
           </Badge>
         );
       case "active":
-        return <Badge className="bg-green-100 text-green-800">Aktif</Badge>;
+        return (
+          <Badge className="bg-green-100 text-green-800">
+            {t("common.active")}
+          </Badge>
+        );
       case "inactive":
-        return <Badge className="bg-gray-100 text-gray-800">Tidak Aktif</Badge>;
+        return (
+          <Badge className="bg-gray-100 text-gray-800">
+            {t("common.deActive")}
+          </Badge>
+        );
       case "new":
-        return <Badge className="bg-blue-100 text-blue-800">Baru</Badge>;
+        return (
+          <Badge className="bg-blue-100 text-blue-800">{t("common.new")}</Badge>
+        );
       default:
         return <Badge variant="secondary">{status}</Badge>;
     }
@@ -104,18 +119,18 @@ const ModuleCustomers = () => {
     <div className="space-y-6">
       <div className="flex items-center justify-between">
         <div>
-          <h1 className="text-3xl font-bold text-gray-900">Pelanggan</h1>
-          <p className="text-gray-600">Kelola data dan riwayat pelanggan</p>
+          <h1 className="text-3xl font-bold text-gray-900">{t("title")}</h1>
+          <p className="text-gray-600">{t("customerList")}</p>
         </div>
 
         <div className="flex space-x-2">
           <Button variant="outline">
             <Filter className="w-4 h-4 mr-2" />
-            Filter
+            {t("common.filter")}
           </Button>
           <Button>
             <Plus className="w-4 h-4 mr-2" />
-            Tambah Pelanggan
+            {t("addCustomer")}
           </Button>
         </div>
       </div>
@@ -127,7 +142,7 @@ const ModuleCustomers = () => {
             <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 w-4 h-4" />
             <input
               type="text"
-              placeholder="Cari pelanggan berdasarkan nama, email, atau nomor telepon..."
+              placeholder={t("searchCustomers")}
               className="w-full pl-10 pr-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
             />
           </div>
@@ -137,7 +152,7 @@ const ModuleCustomers = () => {
           <CardContent className="p-4">
             <div className="text-center">
               <p className="text-2xl font-bold text-blue-600">1,234</p>
-              <p className="text-sm text-gray-500">Total Pelanggan</p>
+              <p className="text-sm text-gray-500">{t("totalCustomers")}</p>
             </div>
           </CardContent>
         </Card>
@@ -146,8 +161,8 @@ const ModuleCustomers = () => {
       {/* Customers List */}
       <Card>
         <CardHeader>
-          <CardTitle>Daftar Pelanggan</CardTitle>
-          <CardDescription>Semua pelanggan yang terdaftar</CardDescription>
+          <CardTitle>{t("customerList")}</CardTitle>
+          <CardDescription>{t("customerDetails")}</CardDescription>
         </CardHeader>
         <CardContent>
           <div className="space-y-4">
@@ -182,7 +197,7 @@ const ModuleCustomers = () => {
 
                 <div className="flex items-center space-x-6">
                   <div className="text-center">
-                    <p className="text-sm text-gray-500">Total Pesanan</p>
+                    <p className="text-sm text-gray-500">{t("totalOrders")}</p>
                     <p className="font-semibold flex items-center">
                       <ShoppingCart className="w-4 h-4 mr-1" />
                       {customer.totalOrders}
@@ -190,14 +205,16 @@ const ModuleCustomers = () => {
                   </div>
 
                   <div className="text-center">
-                    <p className="text-sm text-gray-500">Total Belanja</p>
+                    <p className="text-sm text-gray-500">{t("totalSpent")}</p>
                     <p className="font-semibold text-green-600">
                       Rp {customer.totalSpent.toLocaleString()}
                     </p>
                   </div>
 
                   <div className="text-center">
-                    <p className="text-sm text-gray-500">Poin Loyalitas</p>
+                    <p className="text-sm text-gray-500">
+                      {t("loyaltyPoints")}
+                    </p>
                     <p className="font-semibold text-yellow-600 flex items-center">
                       <Star className="w-4 h-4 mr-1" />
                       {customer.loyaltyPoints}
@@ -205,7 +222,7 @@ const ModuleCustomers = () => {
                   </div>
 
                   <div className="text-center">
-                    <p className="text-sm text-gray-500">Pesanan Terakhir</p>
+                    <p className="text-sm text-gray-500">{t("lastOrder")}</p>
                     <p className="font-semibold text-sm flex items-center">
                       <Calendar className="w-4 h-4 mr-1" />
                       {customer.lastOrder}
@@ -235,11 +252,12 @@ const ModuleCustomers = () => {
           {/* Pagination */}
           <div className="flex items-center justify-between mt-6">
             <p className="text-sm text-gray-500">
-              Menampilkan 1-5 dari 1,234 pelanggan
+              {t("common.table.show")} 1-5 {t("common.table.to")} 1,234{" "}
+              {t("customers")}
             </p>
             <div className="flex space-x-2">
               <Button variant="outline" size="sm" disabled>
-                Sebelumnya
+                {t("common.previous")}
               </Button>
               <Button variant="outline" size="sm">
                 1
@@ -251,7 +269,7 @@ const ModuleCustomers = () => {
                 3
               </Button>
               <Button variant="outline" size="sm">
-                Selanjutnya
+                {t("common.next")}
               </Button>
             </div>
           </div>

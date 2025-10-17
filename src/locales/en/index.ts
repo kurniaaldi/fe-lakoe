@@ -1,0 +1,10 @@
+export { default as EnglishAuth } from "./auth.json";
+export { default as EnglishCommon } from "./common.json";
+export { default as EnglishCustomers } from "./customers.json";
+export { default as EnglishDashboard } from "./dashboard.json";
+export { default as EnglishPayments } from "./payments.json";
+export { default as EnglishProducts } from "./products.json";
+export { default as EnglishReports } from "./reports.json";
+export { default as EnglishSales } from "./sales.json";
+export { default as EnglishSettings } from "./settings.json";
+export { default as EnglishTransactions } from "./transactions.json";

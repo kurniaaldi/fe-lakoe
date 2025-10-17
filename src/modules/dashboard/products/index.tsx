@@ -1,13 +1,16 @@
+"use client";
+
 import {
-  Search,
-  Plus,
+  AlertCircle,
   Edit,
-  Trash2,
   Eye,
   Package,
+  Plus,
+  Search,
+  Trash2,
   TrendingUp,
-  AlertCircle,
 } from "lucide-react";
+import { useTranslation } from "react-i18next";
 
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
@@ -20,6 +23,8 @@ import {
 } from "@/components/ui/card";
 
 const ModuleProducts = () => {
+  const { t } = useTranslation("products");
+
   const products = [
     {
       id: 1,
@@ -76,13 +81,23 @@ const ModuleProducts = () => {
   const getStatusBadge = (status: string) => {
     switch (status) {
       case "available":
-        return <Badge className="bg-green-100 text-green-800">Tersedia</Badge>;
+        return (
+          <Badge className="bg-green-100 text-green-800">
+            {t("products.inStock")}
+          </Badge>
+        );
       case "low_stock":
         return (
-          <Badge className="bg-yellow-100 text-yellow-800">Stok Rendah</Badge>
+          <Badge className="bg-yellow-100 text-yellow-800">
+            {t("products.lowStock")}
+          </Badge>
         );
       case "out_of_stock":
-        return <Badge className="bg-red-100 text-red-800">Habis</Badge>;
+        return (
+          <Badge className="bg-red-100 text-red-800">
+            {t("products.outOfStock")}
+          </Badge>
+        );
       default:
         return <Badge variant="secondary">{status}</Badge>;
     }
@@ -92,13 +107,13 @@ const ModuleProducts = () => {
     <div className="space-y-6">
       <div className="flex items-center justify-between">
         <div>
-          <h1 className="text-3xl font-bold text-gray-900">Produk</h1>
-          <p className="text-gray-600">Kelola menu dan produk Anda</p>
+          <h1 className="text-3xl font-bold text-gray-900">{t("title")}</h1>
+          <p className="text-gray-600">{t("productList")}</p>
         </div>
 
         <Button>
           <Plus className="w-4 h-4 mr-2" />
-          Tambah Produk
+          {t("addProduct")}
         </Button>
       </div>
 
@@ -109,7 +124,7 @@ const ModuleProducts = () => {
             <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 w-4 h-4" />
             <input
               type="text"
-              placeholder="Cari produk berdasarkan nama, kategori, atau harga..."
+              placeholder={t("searchProducts")}
               className="w-full pl-10 pr-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
             />
           </div>
@@ -120,7 +135,7 @@ const ModuleProducts = () => {
             <CardContent className="p-4">
               <div className="text-center">
                 <p className="text-2xl font-bold text-blue-600">25</p>
-                <p className="text-sm text-gray-500">Total Produk</p>
+                <p className="text-sm text-gray-500">{t("totalProducts")}</p>
               </div>
             </CardContent>
           </Card>
@@ -128,7 +143,7 @@ const ModuleProducts = () => {
             <CardContent className="p-4">
               <div className="text-center">
                 <p className="text-2xl font-bold text-red-600">3</p>
-                <p className="text-sm text-gray-500">Stok Rendah</p>
+                <p className="text-sm text-gray-500">{t("lowStock")}</p>
               </div>
             </CardContent>
           </Card>
@@ -152,14 +167,14 @@ const ModuleProducts = () => {
 
             <CardContent className="space-y-4">
               <div className="flex items-center justify-between">
-                <span className="text-sm text-gray-500">Harga</span>
+                <span className="text-sm text-gray-500">{t("price")}</span>
                 <span className="font-semibold">
                   Rp {product.price.toLocaleString()}
                 </span>
               </div>
 
               <div className="flex items-center justify-between">
-                <span className="text-sm text-gray-500">Stok</span>
+                <span className="text-sm text-gray-500">{t("stock")}</span>
                 <div className="flex items-center space-x-2">
                   {product.stock === 0 && (
                     <AlertCircle className="w-4 h-4 text-red-500" />
@@ -179,7 +194,7 @@ const ModuleProducts = () => {
               </div>
 
               <div className="flex items-center justify-between">
-                <span className="text-sm text-gray-500">Penjualan</span>
+                <span className="text-sm text-gray-500">{t("sales")}</span>
                 <div className="flex items-center space-x-1">
                   <TrendingUp className="w-3 h-3 text-green-600" />
                   <span className="text-sm font-medium text-green-600">
@@ -190,7 +205,7 @@ const ModuleProducts = () => {
 
               <div className="pt-2 border-t">
                 <div className="flex items-center justify-between">
-                  <span className="text-sm text-gray-500">Revenue</span>
+                  <span className="text-sm text-gray-500">{t("revenue")}</span>
                   <span className="font-semibold text-green-600">
                     {product.revenue}
                   </span>
@@ -200,11 +215,11 @@ const ModuleProducts = () => {
               <div className="flex space-x-2 pt-2">
                 <Button variant="outline" size="sm" className="flex-1">
                   <Eye className="w-4 h-4 mr-1" />
-                  Lihat
+                  {t("common.view")}
                 </Button>
                 <Button variant="outline" size="sm" className="flex-1">
                   <Edit className="w-4 h-4 mr-1" />
-                  Edit
+                  {t("common.edit")}
                 </Button>
                 <Button
                   variant="outline"
@@ -221,10 +236,12 @@ const ModuleProducts = () => {
 
       {/* Pagination */}
       <div className="flex items-center justify-between">
-        <p className="text-sm text-gray-500">Menampilkan 1-5 dari 25 produk</p>
+        <p className="text-sm text-gray-500">
+          {t("common.table.show")} 1-5 {t("common.table.to")} 25 {t("products")}
+        </p>
         <div className="flex space-x-2">
           <Button variant="outline" size="sm" disabled>
-            Sebelumnya
+            {t("common.previous")}
           </Button>
           <Button variant="outline" size="sm">
             1
@@ -236,7 +253,7 @@ const ModuleProducts = () => {
             3
           </Button>
           <Button variant="outline" size="sm">
-            Selanjutnya
+            {t("common.next")}
           </Button>
         </div>
       </div>

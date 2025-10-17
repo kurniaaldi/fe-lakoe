@@ -1,3 +1,3 @@
 // Export all translation files
-export { default as en } from "./en/translation";
-export { default as id } from "./id/translation";
+export * as en from "./en";
+export * as id from "./id";

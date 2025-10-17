@@ -2,7 +2,8 @@
 
 import { useState } from "react";
 
-import { ArrowLeft, Smartphone, Shield } from "lucide-react";
+import { ArrowLeft, Shield, Smartphone } from "lucide-react";
+import { useTranslation } from "react-i18next";
 
 import { Button } from "@/components/ui/button";
 import {
@@ -17,6 +18,7 @@ import { Label } from "@/components/ui/label";
 import { Separator } from "@/components/ui/separator";
 
 const ModuleLogin = () => {
+  const { t } = useTranslation("auth");
   const [step, setStep] = useState<"phone" | "otp">("phone");
   const [phoneNumber, setPhoneNumber] = useState("");
   const [otp, setOtp] = useState("");
@@ -58,9 +60,7 @@ const ModuleLogin = () => {
           </div>
           <CardTitle className="text-2xl font-bold">Lakoe Backoffice</CardTitle>
           <CardDescription>
-            {step === "phone"
-              ? "Masukkan nomor handphone untuk melanjutkan"
-              : "Masukkan kode OTP yang dikirim ke nomor Anda"}
+            {step === "phone" ? t("enterPhoneNumber") : t("enterOTPCode")}
           </CardDescription>
         </CardHeader>
 
@@ -68,7 +68,7 @@ const ModuleLogin = () => {
           {step === "phone" ? (
             <form onSubmit={handlePhoneSubmit} className="space-y-4">
               <div className="space-y-2">
-                <Label htmlFor="phone">Nomor Handphone</Label>
+                <Label htmlFor="phone">{t("phoneNumber")}</Label>
                 <div className="relative">
                   <Smartphone className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 w-4 h-4" />
                   <Input
@@ -88,24 +88,24 @@ const ModuleLogin = () => {
                 className="w-full"
                 disabled={isLoading || !phoneNumber}
               >
-                {isLoading ? "Mengirim OTP..." : "Kirim OTP"}
+                {isLoading ? t("sendingOTP") : t("sendOTP")}
               </Button>
             </form>
           ) : (
             <form onSubmit={handleOtpSubmit} className="space-y-4">
               <div className="space-y-2">
-                <Label htmlFor="otp">Kode OTP</Label>
+                <Label htmlFor="otp">{t("otpCode")}</Label>
                 <Input
                   id="otp"
                   type="text"
-                  placeholder="Masukkan 6 digit kode OTP"
+                  placeholder={t("enterOTPPlaceholder")}
                   value={otp}
                   onChange={(e) => setOtp(e.target.value)}
                   maxLength={6}
                   required
                 />
                 <p className="text-sm text-gray-500">
-                  Kode OTP dikirim ke {phoneNumber}
+                  {t("otpSentTo")} {phoneNumber}
                 </p>
               </div>
 
@@ -115,7 +115,7 @@ const ModuleLogin = () => {
                   className="w-full"
                   disabled={isLoading || otp.length !== 6}
                 >
-                  {isLoading ? "Memverifikasi..." : "Verifikasi OTP"}
+                  {isLoading ? t("verifying") : t("verifyOTP")}
                 </Button>
 
                 <Button
@@ -125,7 +125,7 @@ const ModuleLogin = () => {
                   onClick={handleBackToPhone}
                 >
                   <ArrowLeft className="w-4 h-4 mr-2" />
-                  Kembali ke Nomor Handphone
+                  {t("backToPhone")}
                 </Button>
               </div>
             </form>
@@ -134,9 +134,7 @@ const ModuleLogin = () => {
           <Separator className="my-6" />
 
           <div className="text-center text-sm text-gray-500">
-            <p>
-              Belum punya akun? Otomatis terdaftar saat verifikasi pertama kali
-            </p>
+            <p>{t("noAccountMessage")}</p>
           </div>
         </CardContent>
       </Card>
